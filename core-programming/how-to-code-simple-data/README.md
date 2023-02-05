@@ -23,3 +23,5 @@ Recognize and represent more complicated information
 * Binary search trees
 
 ## Excercises
+
+Status for key excercises [here](https://docs.google.com/spreadsheets/d/1giAhaE2HwB3n1zEh1t_v29IuXsCttrgz8531bOZOPf4/edit#gid=0).
