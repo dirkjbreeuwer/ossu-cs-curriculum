@@ -17,7 +17,7 @@ Recognize and represent more complicated information
 * How to design data (HtDD)
 * How to design worlds (HtDW)
 * Compound data
-* Self reference
+* [Self reference](./notes/self_reference.md) 
 * Naturals
 * Helpers
 * Binary search trees
