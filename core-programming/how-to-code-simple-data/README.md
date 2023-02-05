@@ -25,3 +25,9 @@ Recognize and represent more complicated information
 ## Excercises
 
 Status for key excercises [here](https://docs.google.com/spreadsheets/d/1giAhaE2HwB3n1zEh1t_v29IuXsCttrgz8531bOZOPf4/edit#gid=0).
+
+Solutions to excercises
+
+| Section | Progress | 
+| --- | --- |
+| [Self reference](./assignments/04a-self-reference/) | 50% |
