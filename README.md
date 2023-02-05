@@ -18,4 +18,4 @@ Topics covered: `functional programming`, `design for testing`, `program require
 
 | Course | Effort | Status | Artifacts |
 | --- | --- | --- | :-: |
-| How to Code - Simple Data | 70 hours | In Progress | [URL](./core-programming/how-to-code-simple-data/README.md) |
+| [How to Code - Simple Data ](https://www.edx.org/course/how-to-code-simple-data) | 70 hours | In Progress | [URL](./core-programming/how-to-code-simple-data/README.md) |

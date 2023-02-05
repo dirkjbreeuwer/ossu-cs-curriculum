@@ -30,4 +30,4 @@ Solutions to excercises
 
 | Section | Progress | 
 | --- | --- |
-| [Self reference](./assignments/04a-self-reference/) | 50% |
+| [Self reference](./assignments/04a-self-reference/) | 100% |
