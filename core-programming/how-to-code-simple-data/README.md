@@ -13,11 +13,12 @@ Recognize and represent more complicated information
 
 ## Core concepts
 
-* [How to design functions (HtDF)](./notes/HtDF.md)
+* [How to design functions (HtDF)](./notes/01b-htdf.md)
 * How to design data (HtDD)
 * How to design worlds (HtDW)
 * Compound data
-* [Self reference](./notes/self_reference.md)
+* [Self reference](./notes/04a-self-reference.md)
+* [Reference](./notes/04b-reference.md)
 * Naturals
 * Helpers
 * Binary search trees
@@ -31,4 +32,4 @@ Solutions to excercises
 | Section | Progress | 
 | --- | --- |
 | [Self reference](./assignments/04a-self-reference/) | 100% |
-| [Reference](./assignments/04b-reference/) | 0% |
+| [Reference](./assignments/04b-reference/) | 75% |
