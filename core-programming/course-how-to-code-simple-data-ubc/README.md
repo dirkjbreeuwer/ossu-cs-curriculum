@@ -32,4 +32,5 @@ Solutions to excercises
 | Section | Progress | 
 | --- | --- |
 | [Self reference](./assignments/04a-self-reference/) | 100% |
-| [Reference](./assignments/04b-reference/) | 75% |
+| [Reference](./assignments/04b-reference/) | 100% |
+| [Naturals](./assignments/05a-naturals/) | 100% |
