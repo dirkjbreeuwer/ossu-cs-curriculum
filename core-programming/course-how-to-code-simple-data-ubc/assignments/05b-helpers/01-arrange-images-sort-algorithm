@@ -1,0 +1,54 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname 01-arrange-images-sort-algorithm) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+
+;; ListOfNumber is one of:
+;;  - empty
+;;  - (cons Number ListOfNumber)
+;; interp. a list of number
+
+(define L1 empty)
+(define L2 (cons 1 empty))
+(define L3 (cons 1 (cons 3 empty)))
+
+#;
+(define (fn-for-lon lon)
+  (cond [(empty? lon) (...)]                   ;BASE CASE
+        [else (... (first lon)                 ;String
+                   (fn-for-lon (rest lon)))])) ;NATURAL RECURSION
+;;             /
+;;            /
+;;       COMBINATION
+;; Template rules used:
+;;  - one of: 2 cases
+;;  - atomic distinct: empty
+;;  - compound: (cons String ListOfString)
+;;  - self-reference: (rest los) is ListOfString
+
+;; ListOfNumber -> ListOfNumber
+;; Produce a sorted list of number in asc
+
+(check-expect (sort-list empty) empty)
+(check-expect (sort-list
+               (cons 2 (cons 1 empty)))
+              (cons 1 (cons 2 empty)))
+
+(check-expect (sort-list
+               (cons 3 (cons 9 (cons 2 (cons 5 empty)))))
+              (cons 2 (cons 3 (cons 5 (cons 9 empty))))
+              )
+
+
+;(define (sort-list L1) empty); stub
+
+(define (sort-list lon)
+  (cond [(empty? lon) empty ]                   ;BASE CASE
+        [else (insert (first lon)                 ;String
+                   (sort-list (rest lon)))])) ;NATURAL RECURSION
+
+;; Number ListOfNumber -> ListOfNumber
+;; Produce a ListOfNumber with the number inserted into its correct place
+
+(define (insert n
+
+
