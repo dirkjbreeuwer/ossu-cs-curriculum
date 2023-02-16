@@ -28,15 +28,15 @@
 ;; ListOfNumber -> ListOfNumber
 ;; Produce a sorted list of number in asc
 
-;(check-expect (sort-list empty) empty)
-;(check-expect (sort-list
-;               (cons 2 (cons 1 empty)))
-;              (cons 1 (cons 2 empty)))
+(check-expect (sort-list empty) empty)
+(check-expect (sort-list
+               (cons 2 (cons 1 empty)))
+              (cons 1 (cons 2 empty)))
 
-;(check-expect (sort-list
-;               (cons 3 (cons 9 (cons 2 (cons 5 empty)))))
-;              (cons 2 (cons 3 (cons 5 (cons 9 empty))))
-;              )
+(check-expect (sort-list
+               (cons 3 (cons 9 (cons 2 (cons 5 empty)))))
+              (cons 2 (cons 3 (cons 5 (cons 9 empty))))
+              )
 
 
 ;(define (sort-list L1) empty); stub
@@ -49,23 +49,6 @@
 ;; Number ListOfNumber -> ListOfNumber
 ;; Produce a ListOfNumber with the number inserted into its correct place
 
-(check-expect (insert 3 empty) (cons 3 empty))
-(check-expect (insert 1 (cons 2 (cons 3 empty))) (cons 1 (cons 2 (cons 3 empty))))
-(check-expect (insert 10 (cons 1 empty)) (cons 1 (cons 10 empty)))
-(check-expect (insert 2 (cons 3 empty)) (cons 2 (cons 3 empty)))
-(check-expect (insert 2 (cons 3 (cons 10 empty))) (cons 2 (cons 3 (cons 10 empty))))
-
-
-;(define (insert n lon) empty) ; stub
-
-
-(define (insert n alon)
-  (cond [(empty? alon) (cons n empty)]                   ;BASE CASE
-        [else (cond [(< n (first alon)) (cons n alon)]                 ;String
-                   [else (cons (first alon) (insert n (rest alon)))]
-                   )])) ;NATURAL RECURSION
-
-
-
+(define (insert n
 
 
