@@ -16,6 +16,6 @@ Topics covered: `simple programs`, `simple data structures`
 
 Topics covered: `functional programming`, `design for testing`, `program requirements`, `common design patterns`, `unit testing`, `object-oriented design`, `static typing`, `dynamic typing`, `ML-family languages (via Standard ML)`, `Lisp-family languages (via Racket)`, `Ruby`
 
-| Course | Effort | Status | Artifacts |
+| Course | Effort | Status | External Link |
 | --- | --- | --- | :-: |
-| [How to Code - Simple Data ](https://www.edx.org/course/how-to-code-simple-data) | 70 hours | In Progress | [URL](./core-programming/course-how-to-code-simple-data-ubc/README.md) |
+| [How to Code - Simple Data ](./core-programming/course-how-to-code-simple-data-ubc/README.md) | 70 hours | In Progress | [URL](https://www.edx.org/course/how-to-code-simple-data) |
