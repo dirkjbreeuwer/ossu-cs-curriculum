@@ -34,4 +34,4 @@ Solutions to excercises
 | [Self reference](./assignments/04a-self-reference/) | 100% |
 | [Reference](./assignments/04b-reference/) | 100% |
 | [Naturals](./assignments/05a-naturals/) | 100% |
-| [Helpers](./assignments/05b-helpers/) | 75% |
+| [Helpers](./assignments/05b-helpers/) | 100% |
