@@ -13,15 +13,13 @@ Recognize and represent more complicated information
 
 ## Core concepts
 
+* [How to design programmes](./notes/00-systematic-programme-design.md)
 * [How to design functions (HtDF)](./notes/01b-htdf.md)
 * How to design data (HtDD)
 * How to design worlds (HtDW)
-* Compound data
-* [Self reference](./notes/04a-self-reference.md)
-* [Reference](./notes/04b-reference.md)
-* Naturals
-* Helpers
-* Binary search trees
+* Procesing simple data (numbers, booleans, strings)
+* Processing compound data (structures)
+* Processing arbitrary large data (lists, binary search trees)
 
 ## Excercises
 
