@@ -1,68 +1,63 @@
-# Self reference
 
-Types of data:
+# Self-Reference
 
-* `Atomic (fixed size data)`: Numbers, strings, images.
-* `Arbitrarily large data`: Undetermined number of pieces of information that must be processed as one piece of data.
+## Types of Data
 
-`Self-reference`: When a type comment refers to itself. For a self-referential data definition to be valid, it must satisfy two conditions. First, it must contain at least two clauses. Second, at least one of the clauses must not refer back to the class of data that is being defined.
+- **Atomic (fixed size data):** Numbers, strings, images.
+- **Arbitrarily large data:** Undetermined number of pieces of information that must be processed as one piece of data.
+
+## Self-Reference
+
+Self-reference occurs when a data definition refers to itself within its own definition. This pattern is especially useful in defining recursive data structures like lists, trees, and graphs. For a self-referential data definition to be both meaningful and useful, it must adhere to two critical conditions:
+
+1. **Multiple Clauses:** The definition must include at least two clauses to support recursion. A clause typically represents a possible state or case for the data structure (e.g., an empty list vs. a list with elements).
+2. **Non-Self-Referential Clause:** This acts as a base case to prevent infinite recursion, ensuring the structure is usable and operations on it can terminate.
 
 ## Template for Lists
 
-```Lisp
+```lisp
 ; A List-of-Number is one of: 
 ; – empty
 ; – (cons Number List-of-number)
-; interpretation a list of numbers
+; interpretation: a list of numbers
 ```
 
-## Why use this template? 
+### Why Use This Template?
 
-This template gives us a step by step definition of how a function that operates in this data type should behave:
+This template provides a step-by-step definition for functions operating on this data type:
 
-```Lisp
+```lisp
 (define (fn-for-lon lon)
   (cond [(empty? lon) (...)]
         [else 
-        (... (first lon)
-        (fn-fn-lon (rest lon))
-        )]
+         (... (first lon)
+              (fn-for-lon (rest lon)))]
   ))
-
 ```
 
-empty = `empty` tells our function exactly what to do when the list is empty. This is usually referred as the base case. Usual values that can produce include `empty`, `zero`, `one`.
+- **empty:** Specifies the base case action when the list is empty. Common base cases include `empty`, `zero`, `one`.
+- **number:** The `first lon` defines the contribution of the first element, often itself or 1.
 
-number = `first lon` and tells the function exactly what the contribution of the first element should be. In many cases the contribuition of the first is itself, or 1.
+### Function Table
 
+| Function        | Base  | Contribution of First       | Combination                |
+|-----------------|-------|-----------------------------|----------------------------|
+| sum             | 0     | itself                      | +                          |
+| count           | 0     | 1                           | +                          |
+| contains-ubc?   | false | `(?string=> x "UBC")`       | `(if y true nr)`           |
 
-| function | base | contribution of first | combination | 
-| --- | --- | --- | --- |
-| sum | 0 | itself | + |
-| count | 0 | 1 | + |
-| contains-ubc? | false | (?string=> x "UBC") | (if y true nr) |
+## Concepts and Definitions
 
+- **Empty:** A special value representing the empty list.
+- **Empty?:** A predicate that returns true for an empty list and nothing else.
+- **Cons:** A constructor for lists, taking two arguments: `x` (any type) and `y` (a list).
+  
+  ```lisp
+  (cons x y) → list?
+    x : any/c
+    y : list?
+  ```
+- **Cons?:** A predicate to recognize instances of cons.
+- **First:** A selector to extract the last item added.
+- **Rest:** A selector to extract the extended list.
 
-## What is empty, what is cons?
-
-`Empty` is a kind of atomic value that returns true precisely when applied to an empty list.
-
-`Cons` is a constructor for lists, it accepts two arguments: x which can be any type, and y which is a list.
-
-```Lisp
-(cons x y) → list?
-  x : any/c
-  y : list?
-```
-
-`empty`  a special value to represent the empty list
-
-`empty?` a predicate to recognize an empty list and nothing else
-
-`cons` a checked constructor to create two-field instances
-
-`first` selector to extract the last item added
-
-`rest` selector to extract the extended list
-
-`cons?` predicate to recognize instances of cons
