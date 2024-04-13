@@ -1,6 +1,6 @@
 # ossu-cs-curriculum
 
-Assignments and notes from Open Source Society University (OSSU)'s Bachelor in Computer Science curriculum.
+Assignments and notes from [Open Source Society University (OSSU)'s Bachelor in Computer Science curriculum](https://github.com/ossu/computer-science).
 
 ## Course list and progress
 
