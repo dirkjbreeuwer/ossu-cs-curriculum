@@ -10,7 +10,7 @@ Topics covered: `Arithmetics`, `Basic Geometry`, `Pre-algebra`, `Integrated Math
 
 | Course | Effort | Status | Artifacts |
 | --- | --- | --- | :-: |
-| [Khan Academy - Arithmetics](https://www.khanacademy.org/math/arithmetic)| X | In progress | NA |
+| [Khan Academy - Arithmetics](https://www.khanacademy.org/math/arithmetic)| 0.5 hours | Completed | NA |
 
 
 ### Intro CS
