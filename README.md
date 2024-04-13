@@ -10,7 +10,7 @@ Topics covered: `simple programs`, `simple data structures`
 
 | Course | Effort | Status | Artifacts |
 | --- | --- | --- | :-: |
-| Python for Everybody | 100 hours | Completed | NA |
+| [Python for Everybody](https://www.py4e.com/)| 100 hours | Completed | NA |
 
 ### Core programming
 
