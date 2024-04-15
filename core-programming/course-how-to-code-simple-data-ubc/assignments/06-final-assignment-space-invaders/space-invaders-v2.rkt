@@ -94,10 +94,10 @@
 ;; Missile is (make-missile Number Number)
 ;; interp. the missile's location is x y in screen coordinates
 
-(define M1 (make-missile 150 300))                       ;not hit U1
-(define M2 (make-missile (invader-x I1) (+ (invader-y I1) 10)))  ;exactly hit U1
+(define M1 (make-missile (/ WIDTH 2) 500))  ; missile just shooting from the center of the screen
+(define M2 (make-missile (invader-x I1) (+ (invader-y I1) 10)))  
 (define M3 (make-missile (invader-x I1) (+ (invader-y I1)  5)))  ;> hit U1
-(define M4 (make-missile 150 100))
+(define M4 (make-missile (/ WIDTH 2) (/ HEIGHT 2))) ; missile in the center of the screen
 
 #;
 (define (fn-for-missile m)
@@ -161,7 +161,7 @@
 ; (define (advance-game s) s) ;stub
 (define (advance-game s)
   (make-game empty
-             empty
+             (advance-missiles (game-missiles s))
              (advance-tank (game-t s))))
 
 
@@ -173,7 +173,8 @@
 ;(define (render-game s) BACKGROUND) ;stub
 
 (define (render-game s)
-       (render-tank (game-t s)))
+                   (render-missiles (game-missiles s)
+                                    (render-tank (game-t s))))
 
 
 ;; ListOfInvader -> ListOfInvader
@@ -181,12 +182,38 @@
 
 (define (render-invaders loi img) BACKGROUND) ; stub
 
-;; ListOfMissile -> ListOfMissile
-;; !!
 
-(define (render-missiles lom img) BACKGROUND) ; stub
+;; ListOfMissile Image -> Image
+;; Render LOM into image with background
+(check-expect (render-missiles  (list (make-missile (/ WIDTH 2) (/ HEIGHT 2))) BACKGROUND) (place-image MISSILE (/ WIDTH 2) (/ HEIGHT 2) BACKGROUND ))  ; One missile in the middle of the screen
+(check-expect (render-missiles  (list (make-missile (/ WIDTH 2) (/ HEIGHT 2)) (make-missile (/ WIDTH 2) 500 )) BACKGROUND)
+              (place-image MISSILE (/ WIDTH 2) (/ HEIGHT 2) (place-image MISSILE (/ WIDTH 2) 500 BACKGROUND )))  ; Two missiles: One begining one middle
 
-;; Tank -> Tank
+
+
+;(define (render-missiles lom img) BACKGROUND) ; stub
+
+(define (render-missiles lom img)
+  (cond[(empty? lom) img]
+       [else
+        (place-image MISSILE
+                     (missile-x (first lom))
+                     (missile-y (first lom))
+                     (render-missiles (rest lom) img))]))
+
+
+;; Missile -> Image
+;; Render missile into image
+
+(check-expect (render-missile M1) (place-image MISSILE 150 500 BACKGROUND)) ; Missile just shooting from the bottom of the screen
+
+; (define (render-missile m) BACKGROUND) ; stub
+
+(define (render-missile m)
+  (place-image MISSILE (missile-x m) (missile-y m) BACKGROUND))
+
+
+;; Tank -> Image
 ;; Place the image of the current tank in the background
 (check-expect (render-tank (make-tank (/ WIDTH 2) 1)) (place-image TANK (/ WIDTH 2) (- HEIGHT TANK-HEIGHT/2) BACKGROUND)) ;center
 
@@ -199,11 +226,23 @@
 ;; !!
 
 (define (handle-key s ke)
-  (cond 
+  (cond [(key=? ke " ") (make-game (game-invaders s) (fire-missile (game-missiles s) (tank-x (game-t s))) (game-t s))]
         [(key=? ke "left") (make-game (game-invaders s) (game-missiles s) (turn-left (game-t s)))]
         [(key=? ke "right") (make-game (game-invaders s) (game-missiles s) (turn-right (game-t s)))]
         [else 
          s]))
+
+
+;; ListOfMissile Natural -> ListOfMissile
+;; fires a missile
+(check-expect (fire-missile empty 150) (cons (make-missile 150 (- HEIGHT TANK-HEIGHT/2)) empty)) ; fires a missile in the center of the screen
+
+;(define (fire-missile lom x) lom)
+
+(define (fire-missile lom x)
+  (cond[(empty? lom) (cons (make-missile x (- HEIGHT TANK-HEIGHT/2)) empty)]
+       [else
+        (cons (make-missile x (- HEIGHT TANK-HEIGHT/2)) lom)]))
 
 ;; Tank -> Tank
 ;; turns the tank left
@@ -243,22 +282,51 @@
 (define (advance-invaders loi) empty) ; stub
 
 ;; ListOfMissile -> ListOfMissile
-;; !!
+;; Advance each missile in LOM by one unit of missile speed
 
-(define (advance-missiles lom) empty) ; stub
+(check-expect (advance-missiles LOM2) (list (advance-missile M1))) ; advance list with one missile
+(check-expect (advance-missiles LOM3) (list (advance-missile M1) (advance-missile M2) (advance-missile M3))) ; advance list with three missiles
+
+
+;(define (advance-missiles lom) empty) ; stub
+
+(define (advance-missiles lom)
+  (cond[(empty? lom) empty]
+       [else
+        (cons (advance-missile (first lom))
+             (advance-missiles (rest lom)))]))
+
+;; Missile -> Missile
+;; Advance missile by one unit of missile speed
+
+(check-expect (advance-missile M1) (make-missile 150 (- 500 MISSILE-SPEED)))
+
+ 
+; (define (advance-missile m) empty) ; stub
+
+(define (advance-missile m)
+  (make-missile (missile-x m) (- (missile-y m) MISSILE-SPEED)))
+
 
 ;; Tank -> Tank
 ;; move the tank TANK-SPEED pixels in whichever direction it is moving (left or right); stop when it reaches the edge
-(check-expect (advance-tank (make-tank 150 1)) (make-tank (+ 150 TANK-SPEED) 1))
-(check-expect (advance-tank (make-tank WIDTH 1)) (make-tank WIDTH 0))
-(check-expect (advance-tank (make-tank 0 -1)) (make-tank 0 0))
+(check-expect (advance-tank (make-tank 150 1)) (make-tank (+ 150 TANK-SPEED) 1))  ; Tank moving right from middle.
+(check-expect (advance-tank (make-tank WIDTH 1)) (make-tank WIDTH 0))             ; Tank moving right at right edge.
+(check-expect (advance-tank (make-tank 0 -1)) (make-tank 0 0))                    ; Tank moving left at left edge.
+
 
 ;(define (advance-tank t) t) ;stub
 
 (define (advance-tank t)
-  (cond[(> (tank-x t) WIDTH)
-        (make-tank WIDTH 0)]
-       [(< (tank-x t) 0)
-        (make-tank 0 0)]
-       [else
-        (make-tank (+ (tank-x t) (* (tank-dx t) TANK-SPEED)) (tank-dx t))]))
+  (cond
+    ;; Check if the new position is beyond the left edge of the screen
+    [(<= (+ (tank-x t) (* (tank-dx t) TANK-SPEED)) 0)
+     (make-tank 0 0)]  ; Stop at the edge with no movement
+
+    ;; Check if the new position is beyond the right edge of the screen
+    [(>= (+ (tank-x t) (* (tank-dx t) TANK-SPEED)) WIDTH)
+     (make-tank WIDTH 0)]  ; Stop at the edge with no movement
+
+    ;; Default case where the tank is within the bounds
+    [else
+     (make-tank (+ (tank-x t) (* (tank-dx t) TANK-SPEED)) (tank-dx t))]))
