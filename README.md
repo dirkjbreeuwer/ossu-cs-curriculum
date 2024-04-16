@@ -32,7 +32,9 @@ Topics covered: `functional programming`, `design for testing`, `program require
 
 ### Other
 
-| Course | Topic | Effort | Status | 
-| --- | --- | --- | :-: |
-| [Tutorial: How to deploy serverless containers for free](https://www.youtube.com/watch?v=cw34KMPSt4k)| Cloud Computing | 5 minutes | Completed 
+| Course | Topic | Effort | Status | Notes |
+| --- | --- | --- | :-: | --- |
+| [Tutorial: How to deploy serverless containers for free](https://www.youtube.com/watch?v=cw34KMPSt4k)| Cloud Computing | 5 minutes | Completed | | 
+| [100 days of code in Python - Replit](https://replit.com/learn/100-days-of-python)| Python Projects |  | Backlog | Recommended by Paul Graham |
+
 
