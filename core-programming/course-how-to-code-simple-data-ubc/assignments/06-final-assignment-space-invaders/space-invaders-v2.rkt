@@ -299,9 +299,20 @@
 (define (create-invaders loi) empty) ; stub
 
 ;; ListOfInvader -> ListOfInvader
-;; !!
+;; Advance each invader in LOM by one unit of invader speed
+;; If any invader reaches bottom of screen game ovver
+(check-expect (advance-invaders (list(make-invader 150 1 1))) (list (make-invader 151 2 1))) ; invader in the middle of the screen
+
 
 (define (advance-invaders loi) empty) ; stub
+
+;; Invader -> Invader
+;; Move the invader in the direction its traveling
+;; If hits a wall then change the direction in the x-axis
+
+
+(define (move-invader i) i) ;stub
+
 
 ;; ListOfMissile -> ListOfMissile
 ;; Advance each missile in LOM by one unit of missile speed
