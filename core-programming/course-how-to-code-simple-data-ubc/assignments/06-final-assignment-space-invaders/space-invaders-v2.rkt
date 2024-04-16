@@ -177,10 +177,33 @@
                                     (render-tank (game-t s))))
 
 
-;; ListOfInvader -> ListOfInvader
-;; !!
+;; ListOfInvader Image -> Image
+;; Render invaders into image with background
 
-(define (render-invaders loi img) BACKGROUND) ; stub
+(check-expect (render-invaders (list (make-invader 150 1 1)) BACKGROUND) (place-image INVADER 150 1 BACKGROUND)) ; one invader in the middle of the screen
+(check-expect (render-invaders (list (make-invader 150 1 1) (make-invader WIDTH (/ HEIGHT 2) 1)) BACKGROUND) (place-image INVADER 150 1 (place-image INVADER WIDTH (/ HEIGHT 2) BACKGROUND))) ; two invaders: one begining and middle, one middle right
+
+;; New
+
+;(define (render-invaders loi img) BACKGROUND) ; stub
+
+(define (render-invaders loi img)
+  (cond[(empty? loi) img]
+       [else
+        (place-image INVADER (invader-x (first loi)) (invader-y (first loi))
+             (render-invaders (rest loi) img))]))
+
+
+;; Invader -> Image
+;; Render invader into image
+
+(check-expect (render-invader (make-invader (/ WIDTH 2) 0 1)) (place-image INVADER (/ WIDTH 2) 0 BACKGROUND)); Invader appearing at the top of the screen in the center
+
+; (define (render-invader i) BACKGROUND); stub
+
+
+(define (render-invader i)
+  (place-image INVADER (invader-x i) (invader-y i) BACKGROUND))
 
 
 ;; ListOfMissile Image -> Image
@@ -188,7 +211,6 @@
 (check-expect (render-missiles  (list (make-missile (/ WIDTH 2) (/ HEIGHT 2))) BACKGROUND) (place-image MISSILE (/ WIDTH 2) (/ HEIGHT 2) BACKGROUND ))  ; One missile in the middle of the screen
 (check-expect (render-missiles  (list (make-missile (/ WIDTH 2) (/ HEIGHT 2)) (make-missile (/ WIDTH 2) 500 )) BACKGROUND)
               (place-image MISSILE (/ WIDTH 2) (/ HEIGHT 2) (place-image MISSILE (/ WIDTH 2) 500 BACKGROUND )))  ; Two missiles: One begining one middle
-
 
 
 ;(define (render-missiles lom img) BACKGROUND) ; stub
@@ -293,8 +315,10 @@
 (define (advance-missiles lom)
   (cond[(empty? lom) empty]
        [else
-        (cons (advance-missile (first lom))
-             (advance-missiles (rest lom)))]))
+        (if (< (missile-y (first lom)) 0)
+            (advance-missiles (rest lom))
+            (cons (advance-missile (first lom))
+                  (advance-missiles (rest lom))))]))
 
 ;; Missile -> Missile
 ;; Advance missile by one unit of missile speed
