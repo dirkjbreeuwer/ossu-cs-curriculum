@@ -8,7 +8,7 @@
 ;; Space Invaders
 
 
-;; Constants:
+;; Constants: A
 
 (define WIDTH  300)
 (define HEIGHT 500)
@@ -104,7 +104,6 @@
   (... (missile-x m) (missile-y m)))
 
 
-
 (define G0 (make-game empty empty T0))
 (define G1 (make-game empty empty T1))
 (define G2 (make-game (list I1) (list M1) T1))
@@ -160,7 +159,7 @@
 
 ; (define (advance-game s) s) ;stub
 (define (advance-game s)
-  (make-game empty
+  (make-game (destroy-invaders (game-missiles s) (create-invaders (advance-invaders (game-invaders s))))
              (advance-missiles (game-missiles s))
              (advance-tank (game-t s))))
 
@@ -173,8 +172,9 @@
 ;(define (render-game s) BACKGROUND) ;stub
 
 (define (render-game s)
+   (render-invaders (game-invaders s) 
                    (render-missiles (game-missiles s)
-                                    (render-tank (game-t s))))
+                                    (render-tank (game-t s)))))
 
 
 ;; ListOfInvader Image -> Image
@@ -289,29 +289,89 @@
 (define (gos s) BACKGROUND) ; stub
 
 ;; ListOfMissile ListOfInvader -> ListOfInvader
-;; !!
+;; Given a list of invaders and missiles, return a list of invaders, excluding those that have collided with the missiles
+(check-expect (destroy-invaders empty empty) empty)
+(check-expect (destroy-invaders LOM2 empty) empty)
+(check-expect (destroy-invaders empty LOI2) LOI2)
+(check-expect (destroy-invaders (cons M4 empty) LOI2) empty)
 
-(define (destroy-invaders lm loi) empty) ; stub
+
+;(define (destroy-invaders lom loi) loi)
+
+(define (destroy-invaders lom loi)
+  (cond[(empty? loi) empty]
+       [(empty? lom) loi]
+       [else
+        (if (find-invader (first loi) lom)
+            (rest loi)
+            (cons (first loi) (destroy-invaders lom (rest loi))))]))
+
+;; Invader ListOfMissile -> Boolean
+;; if the invaders x and y position is found within the hitbox of the missile, return true
+(check-expect (find-invader I1 LOM4) true)
+
+;(define (find-invader i lom) false)
+
+(define (find-invader i lom)
+  (cond[(empty? lom) false]
+       [else
+        (if (and (< (- (invader-x i) HIT-RANGE) (missile-x (first lom)) (+ (invader-x i) HIT-RANGE))
+                 (< (- (invader-y i) HIT-RANGE) (missile-y (first lom)) (+ (invader-y i) HIT-RANGE)))
+            true
+            (find-invader i (rest lom)))]))
 
 ;; ListOfInvader -> ListOfInvader
-;; !!
+;; Create new invaders every 5 ticks
+;; TODO: Double the rate of new invaders after INVADING-RATE
 
-(define (create-invaders loi) empty) ; stub
+(define (create-invaders loi)
+  (cond[(< (random 150) INVADE-RATE)
+        (cons (make-invader (random WIDTH) 0 (random-direction 1)) loi)]
+       [else loi]))
+
+;; Integer -> Integer
+;; Given an integer, return the negative or positive value of the integer randomly
+
+;(define (random-direction i) i)
+
+(define (random-direction i)
+  (if (= (modulo (random 10) 2) 1)
+      (- i)
+      i))
+
 
 ;; ListOfInvader -> ListOfInvader
 ;; Advance each invader in LOM by one unit of invader speed
-;; If any invader reaches bottom of screen game ovver
-(check-expect (advance-invaders (list(make-invader 150 1 1))) (list (make-invader 151 2 1))) ; invader in the middle of the screen
+;; If any invader reaches bottom of screen game over
+
+(check-expect (advance-invaders (list I1)) (list (move-invader I1))); advance list of one invader
+(check-expect (advance-invaders (list I1 I2)) (list (move-invader I1) (move-invader I2))); advance list of two invaders
+; TODO: advance list of one invader that reaches bottom of screen
+
+;(define (advance-invaders loi) empty) ; stub
+
+(define (advance-invaders lom)
+  (cond[(empty? lom) empty]
+       [else
+        (cons (move-invader (first lom))
+             (advance-invaders (rest lom)))]))
 
 
-(define (advance-invaders loi) empty) ; stub
+;; Move the invader in the direction it's traveling
+;; If it hits a wall, change the direction on the x-axis and move down on the y-axis
 
-;; Invader -> Invader
-;; Move the invader in the direction its traveling
-;; If hits a wall then change the direction in the x-axis
+(check-expect (move-invader (make-invader 150 0 1)) (make-invader 151 1 1)) ; moving down and right
+(check-expect (move-invader (make-invader WIDTH 200 1)) (make-invader (- WIDTH 1) 201 -1)) ; bouncing from the right to left
+(check-expect (move-invader (make-invader 0 200 -1)) (make-invader 1 201 1)) ; bouncing from the left to right
 
-
-(define (move-invader i) i) ;stub
+(define (move-invader i)
+  (cond 
+    [(> (+ (invader-x i) (invader-dx i)) WIDTH)  ;; Bouncing from the right wall
+     (make-invader (- WIDTH 1) (+ (invader-y i) 1) -1)]
+    [(< (+ (invader-x i) (invader-dx i)) 0)  ;; Bouncing from the left wall
+     (make-invader 1 (+ (invader-y i) 1) 1)]
+    [else
+     (make-invader (+ (invader-x i) (invader-dx i)) (+ (invader-y i) 1) (invader-dx i))]))
 
 
 ;; ListOfMissile -> ListOfMissile
