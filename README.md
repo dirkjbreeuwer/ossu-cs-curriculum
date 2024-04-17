@@ -28,6 +28,8 @@ Topics covered: `functional programming`, `design for testing`, `program require
 | Course | Effort | Status | External Link |
 | --- | --- | --- | :-: |
 | [How to Code - Simple Data ](./core-programming/course-how-to-code-simple-data-ubc/README.md) | 70 hours | [Completed](https://courses.edx.org/certificates/3cbdbcc7b50447bcabb7723a0493929a) | [URL](https://www.edx.org/course/how-to-code-simple-data) |
+| [How to Code - Complex Data] | --- | In progress | [URL](https://learning.edx.org/course/course-v1:UBCx+HtC2x+2T2017/home) |
+
 
 
 ### Other
