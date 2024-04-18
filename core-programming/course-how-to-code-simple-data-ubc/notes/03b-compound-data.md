@@ -51,3 +51,36 @@ A data definition helps establish and formalize the structure and behavior of da
 * Constraints and relationships - Any invariants or specific relationships between fields that must always be true (e.g., a number field that must always be positive).
 * Interpretations - Descriptions of what the data represents in the real world or within the context of the application.
 
+  An example
+
+  ```Lisp
+;; Define the structure for a movie
+(define-struct movie (title producer year))
+
+;; Movie Data Type Specification:
+;; A movie is a structure: (make-movie String String Number)
+;;   title: String - the title of the movie
+;;   producer: String - the name of the producer
+;;   year: Number - the release year of the movie
+
+;; INTERPRETATION:
+;; Represents a movie with its title, the producer's name, and the release year.
+;; The title and producer are non-empty strings, and the year is a positive integer representing when the movie was released.
+
+;; Examples of movie structures
+(define MOVIE-1 (make-movie "Inception" "Christopher Nolan" 2010))
+(define MOVIE-2 (make-movie "The Matrix" "Lana Wachowski, Lilly Wachowski" 1999))
+
+;; Template function for processing a movie structure
+(define (fn-for-movie m)
+  ;; To use a movie structure, access its fields like this:
+  (... (movie-title m)     ; String
+       (movie-producer m)  ; String
+       (movie-year m)))    ; Number
+
+;; Potential operations:
+;; - check-movie-age: computes how old the movie is from the current year.
+;; - same-producer?: checks if two movies have the same producer.
+;; - update-year: updates the release year of a movie.
+```
+
