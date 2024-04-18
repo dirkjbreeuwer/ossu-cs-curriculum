@@ -104,4 +104,71 @@ A data definition helps establish and formalize the structure and behavior of da
 | Template        | to formulate an outline                                | for those parameters that stand for compound values, annotate the body with selector expressions • if the function is conditional, annotate all appropriate branches               |
 | Body            | to define the function                                 | develop a Scheme expression that uses Scheme’s primitive operations, other functions, selector expressions, and the variables                            |
 | Test            | to discover mistakes (“typos” and logic)               | apply the function to the inputs of the examples • check that the outputs are as predicted                                                           |
+# Mixed data 
 
+## Desgining functions for mixed data
+
+Some functions must operate of different data types. These functions must employ a different method to operate on each data type. We usually use **cond** expressions plus PREDICATES such as *number?*, *boolean?*, *symbol?*, *struct?* to define how to operate on each data type. 
+
+Example
+
+```Lisp
+(define (distance-to-0 a-pixel)
+  (cond
+    [(number? a-pixel) ... ]
+    [(posn? a-pixel) ...]))
+```
+
+Since each possible input is a structure, we can also add two selector expression to each cond cluase. 
+
+Example
+
+```Lisp
+;; Data Definition:
+(define-struct circle (center radius))
+(define-struct square (nw length))
+;; A shape is either
+;; 1. a structure: (make-circle p s)
+;;    where p is a posn, s a number;
+;; 2. a structure: (make-square p s)
+;;    where p is a posn, s a number.
+
+;; Contract, Purpose, Header:
+;; perimeter : shape -> number
+;; to compute the perimeter of a-shape
+
+;; Examples: see tests
+
+;; Template:
+(define (perimeter a-shape)
+  (cond
+    [(square? a-shape)
+     ... (square-nw a-shape) ... (square-length a-shape) ...]
+    [(circle? a-shape)
+     ... (circle-center a-shape) ... (circle-radius a-shape) ...]))
+
+;; Definition:
+(define (perimeter a-shape)
+  (cond
+    [(circle? a-shape)
+     (* (2 (circle-radius a-shape)) pi)]
+    [(square? a-shape)
+     (* (square-length a-shape) 4)]))
+
+;; Tests: (same as examples)
+(= (perimeter (make-square ... 3)) 12)
+(= (perimeter (make-square ... 1)) (* 2 pi))
+(= (perimeter (make-circle ... 1)) (* 2 pi))
+
+```
+
+### Key activities for designing a function with mixed data
+
+| Phase                | Goal                                          | Activity                                                                                                                                                         |
+|----------------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Data Analysis and Design | to formulate a data definition                 | determine how many distinct classes of "objects" make up the classes of problem data • enumerate the alternatives in a data definition • formulate a data definition for each alternative, if it is a form of compound data |
+| Contract Purpose and Header | to name the function; to specify its classes of input data and its class of output data; to describe its purpose; to formulate a header | name the function, the classes of input data, the class of output data, and specify its purpose: `;; name : in1 in2 ... -> out ;; to compute ... from x1 ... (define (name x1 x2 ...) ...)` |
+| Examples             | to characterize the input-output relationship via examples | create examples of the input-output relationship • make sure there is at least one example per subclass                                                           |
+| Template             | to formulate an outline                       | introduce a `cond`-expression with one clause per subclass • formulate a condition for each case, using built-in and predefined predicates                                      |
+| Body                 | to define the function                        | develop a Scheme expression for each `cond`-line (an answer), assuming that the condition holds                                                                   |
+| Test                 | to discover mistakes (“typos” and logic)      | apply the function to the inputs of the examples • check that the outputs are as predicted                                                                         |
