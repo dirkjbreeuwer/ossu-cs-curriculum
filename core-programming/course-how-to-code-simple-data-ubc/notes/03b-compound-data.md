@@ -95,3 +95,12 @@ A data definition helps establish and formalize the structure and behavior of da
 
 ```
 
+| Phase           | Goal                                                  | Activity                                                                                     |
+|-----------------|-------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| Data Analysis and Design | to formulate a data definition                        | determine how many pieces of data describe the “interesting” aspects of the objects mentioned in the problem statement • add a structure definition and a data definition (for each class of problem object) |
+| Contract Purpose and Header | to name the function; to specify its classes of input data and its class of output data; to describe its purpose; to formulate a header | name the function, the classes of input data, the class of output data, and specify its purpose: ;; name : in1 in2 ... -> out ;; to compute ... from x1 ... (define (name x1 x2 ...) ...) |
+| Examples        | to characterize the input-output relationship via examples | search the problem statement for examples • work through the examples • validate the results, if possible • make up examples                          |
+| Template        | to formulate an outline                                | for those parameters that stand for compound values, annotate the body with selector expressions • if the function is conditional, annotate all appropriate branches               |
+| Body            | to define the function                                 | develop a Scheme expression that uses Scheme’s primitive operations, other functions, selector expressions, and the variables                            |
+| Test            | to discover mistakes (“typos” and logic)               | apply the function to the inputs of the examples • check that the outputs are as predicted                                                           |
+
