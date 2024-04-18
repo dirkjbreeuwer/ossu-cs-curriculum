@@ -18,7 +18,7 @@ Recognize and represent more complicated information
 * How to design data (HtDD)
 * How to design worlds (HtDW)
 * Procesing simple data (numbers, booleans, strings)
-* [Processing compound data (structures)](./notes/03b-compond-data.md)
+* [Processing compound data (structures)](./notes/03b-compound-data.md)
 * Processing arbitrary large data (lists, binary search trees)
 
 ## Excercises
