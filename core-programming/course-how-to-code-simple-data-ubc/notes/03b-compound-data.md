@@ -29,3 +29,14 @@ It is often that functions consume more than a single measurement (number), a si
 ;; Template rules used:
 ;;  - compound: 2 fields
 ```
+
+## Structure definitions
+
+```Lisp
+(define-struct posn (x y))
+```
+
+When DrRacket evaluates this structure defintion, it creates three operations for us:
+1. make-posn, the CONSTRUCTOR, which creates posn structures
+2. posn-x, a SELECTOR, whcih extracts the x coordinate
+3. posn-y, a SELECTOR, which extracfts the y coordinate
