@@ -94,6 +94,7 @@ A data definition helps establish and formalize the structure and behavior of da
 ;; (make-student 'Find 'Matthew 'Amanda)
 
 ```
+### Key activities for designing a function for commpound data
 
 | Phase           | Goal                                                  | Activity                                                                                     |
 |-----------------|-------------------------------------------------------|----------------------------------------------------------------------------------------------|
