@@ -40,3 +40,14 @@ When DrRacket evaluates this structure defintion, it creates three operations fo
 1. make-posn, the CONSTRUCTOR, which creates posn structures
 2. posn-x, a SELECTOR, whcih extracts the x coordinate
 3. posn-y, a SELECTOR, which extracfts the y coordinate
+
+## Data definitions
+
+A data definition helps establish and formalize the structure and behavior of data in a program. It involves specifying:
+
+* The structure type - This defines what kind of data compound the structure is (e.g., a structure representing a movie, a book, etc.).
+* The fields within the structure - These are the individual components of the structure, each of which has a type (e.g., strings, numbers) and a specific role (e.g., title, author).
+* Constructors and selectors - These are functions used to create instances of the structure and to access the fields within those instances, respectively.
+* Constraints and relationships - Any invariants or specific relationships between fields that must always be true (e.g., a number field that must always be positive).
+* Interpretations - Descriptions of what the data represents in the real world or within the context of the application.
+
