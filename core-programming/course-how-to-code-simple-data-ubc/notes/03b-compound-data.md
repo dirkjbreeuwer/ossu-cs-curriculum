@@ -53,34 +53,45 @@ A data definition helps establish and formalize the structure and behavior of da
 
 ### An example
 
-  ```Lisp
-  ;; Define the structure for a movie
-  (define-struct movie (title producer year))
-  
-  ;; Movie Data Type Specification:
-  ;; A movie is a structure: (make-movie String String Number)
-  ;;   title: String - the title of the movie
-  ;;   producer: String - the name of the producer
-  ;;   year: Number - the release year of the movie
-  
-  ;; INTERPRETATION:
-  ;; Represents a movie with its title, the producer's name, and the release year.
-  ;; The title and producer are non-empty strings, and the year is a positive integer representing when the movie was released.
-  
-  ;; Examples of movie structures
-  (define MOVIE-1 (make-movie "Inception" "Christopher Nolan" 2010))
-  (define MOVIE-2 (make-movie "The Matrix" "Lana Wachowski, Lilly Wachowski" 1999))
-  
-  ;; Template function for processing a movie structure
-  (define (fn-for-movie m)
-    ;; To use a movie structure, access its fields like this:
-    (... (movie-title m)     ; String
-         (movie-producer m)  ; String
-         (movie-year m)))    ; Number
-  
-  ;; Potential operations:
-  ;; - check-movie-age: computes how old the movie is from the current year.
-  ;; - same-producer?: checks if two movies have the same producer.
-  ;; - update-year: updates the release year of a movie.
+```Lisp
+;; Data Analysis & Definitions:
+(define-struct student (last first teacher))
+;; A student is a structure: (make-student l f t) where l, f, and t are symbols.
+
+;; Contract: subst-teacher : student symbol -> student
+
+;; Purpose: to create a student structure with a new
+;; teacher name if the teacher’s name matches 'Fritz
+
+;; Examples:
+(subst-teacher (make-student 'Find 'Matthew 'Fritz) 'Elise)
+;; => (make-student 'Find 'Matthew 'Elise)
+(subst-teacher (make-student 'Find 'Matthew 'Amanda) 'Elise)
+;; => (make-student 'Find 'Matthew 'Amanda)
+
+;; Template:
+(define (process-student a-student a-teacher)
+  ... (student-last a-student)
+      (student-first a-student)
+      (student-teacher a-student) ...)
+
+;; Definition:
+(define (subst-teacher a-student a-teacher)
+  (cond
+    [(symbol=? (student-teacher a-student) 'Fritz)
+     (make-student (student-last a-student)
+                   (student-first a-student)
+                   a-teacher)]
+    [else a-student]))
+
+;; Tests:
+(subst-teacher (make-student 'Find 'Matthew 'Fritz) 'Elise)
+;; expected value:
+;; (make-student 'Find 'Matthew 'Elise)
+
+(subst-teacher (make-student 'Find 'Matthew 'Amanda) 'Elise)
+;; expected value:
+;; (make-student 'Find 'Matthew 'Amanda)
+
 ```
 
