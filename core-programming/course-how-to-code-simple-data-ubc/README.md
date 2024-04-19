@@ -19,7 +19,7 @@ Recognize and represent more complicated information
 * How to design worlds (HtDW)
 * Procesing simple data (numbers, booleans, strings)
 * [Processing compound data (structures)](./notes/03b-compound-data.md)
-* Processing arbitrary large data (lists, binary search trees)
+* [Processing arbitrary large data (lists, binary search trees)](./notes/processing-arbitrarily-large-data.md)
 
 ## Excercises
 
