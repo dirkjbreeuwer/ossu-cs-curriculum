@@ -66,4 +66,13 @@ We can also add selectors if any element of the clause is a [compound data](./03
     [(empty? a-list-of-symbols) ...]
     [else ... (first a-list-of-symbols) ... (rest a-list-of-symbols)...]))
 ```
+Now we can add functions that process each case of the list.
 
+```Lisp
+
+(define (contains-car? a-list-of-symbols)
+  (cond
+    ((empty? a-list-of-symbols) false)  ; if the list is empty, return false
+    ((string=? (first a-list-of-symbols) "car") true) ; if the first element is "car", return true
+    (else (contains-car? (rest a-list-of-symbols))))) ; otherwise, recur on the rest of the list
+```
