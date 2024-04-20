@@ -12,8 +12,6 @@ empty ; an empty list
 
 The contract, purpose, hader and examples of a function that adds numbers in a list.
 
-
-
 ```Lisp
 ; A list-of-3-numbers is
 ;; (cons x (cons y (cons z empty)))
@@ -27,3 +25,45 @@ The contract, purpose, hader and examples of a function that adds numbers in a l
 (define (add-up-3 a-list-of-3-numbers) ...)
 
 ```
+
+### Data template for lists
+
+```Lisp
+; A list-of-symbols is one of: 
+; – empty
+; – (cons Number list-of-symbols)
+; interpretation: a list of numbers
+```
+
+Normally, definitions in english explain a new idea in term of old, well-uinderstood concepts. This defintiion refers to itself. This type of defintioon is called [SELF-REFERENTIAL](./04a-self-reference.md) or RECURSIVE.
+
+### Processing lists of arbitrary length
+
+```Lisp
+;; contains-car? : list-of-symbols -> boolean
+;; to determine whether the symbol "car" occurs on a list-of-symbols
+(define (contains-car? a-list-of-symbols) ...) ; stub
+
+(check-expect (contains-car? (cons "truck" empty)) false)
+(check-expect (contains-car? (cons "car" (cons "truck" empty))) true)
+
+```
+
+Based on the data template for lists we can then construct a function template to that handles an empty case and a list case
+
+```Lisp
+(define (contains-car? a-list-of-symbols)
+  (cond
+    [(empty? a-list-of-symbols) ...]
+    [(cons? a-list-of-symbols) ...]))
+```
+
+We can also add selectors if any element of the clause is a [compound data](./03b-compound-data.md). In the case of a list, it is compound so we can add selectors *first* and *rest*.
+
+```Lisp
+(define (contains-car? a-list-of-symbols)
+  (cond
+    [(empty? a-list-of-symbols) ...]
+    [else ... (first a-list-of-symbols) ... (rest a-list-of-symbols)...]))
+```
+
