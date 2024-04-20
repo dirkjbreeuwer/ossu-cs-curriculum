@@ -76,3 +76,5 @@ Now we can add functions that process each case of the list.
     ((string=? (first a-list-of-symbols) "car") true) ; if the first element is "car", return true
     (else (contains-car? (rest a-list-of-symbols))))) ; otherwise, recur on the rest of the list
 ```
+
+
