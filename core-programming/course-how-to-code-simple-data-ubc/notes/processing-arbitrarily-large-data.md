@@ -1,4 +1,4 @@
-# Processing arbitrarily large adta
+# Processing arbitrarily large data
 
 ## Lists
 
