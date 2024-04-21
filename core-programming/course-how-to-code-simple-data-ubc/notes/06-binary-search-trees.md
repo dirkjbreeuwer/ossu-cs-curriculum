@@ -14,7 +14,7 @@ At each level:
 ;; - (make-node Number String BST BST)  ; A node with a key, value, left and right child
 
 ;; Interpretation:
-;; - 'empty' represents an empty BST
+;; - false represents an empty BST
 ;; - `key` is the unique identifier for the node
 ;; - `value` is the value associated with the key
 ;; - `left` represents the left child (a BST)
@@ -30,6 +30,28 @@ At each level:
 (define BST0 false) ;; no BST
 (define BST1 (make-node 1 "abc" false false))  ;; A BST with one node
 (define BST2 (make-node 5 "def" (make-node 1 "abc" false false) (make-node 8 "xyz" false false))) ;; A BST with three nodes
+
+
+;; FUNCTION TEMPLATE
+
+;; FUNCTION TEMPLATE
+
+(define (fn-for-bst t)
+  (cond 
+    [(false? t) ...]  ; Handle the empty tree case
+    [(node? t)  ; If it's a node, access its components
+     ... (node-key t)  ; Integer
+     ... (node-value t) ; String
+     (fn-for-bst (node-left t))  ; BST
+     (fn-for-bst (node-right t)) ...)])  ;BST
+
+
+;; TEMPLATE RULES USED:
+;; one of: two cases
+;; - atomic distinct: false
+;; - compound: (make-node Number String BST BST)
+;; self reference: (node-left t) has type BST
+;; self reference: (node-right t) has type BST
 
 ```
 
