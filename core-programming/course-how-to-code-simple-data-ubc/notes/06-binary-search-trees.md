@@ -34,8 +34,6 @@ At each level:
 
 ;; FUNCTION TEMPLATE
 
-;; FUNCTION TEMPLATE
-
 (define (fn-for-bst t)
   (cond 
     [(false? t) (...)]  ; Handle the empty tree case
@@ -44,6 +42,15 @@ At each level:
           (node-value t) ; String
           (fn-for-bst (node-left t))  ; BST
           (fn-for-bst (node-right t)))]))  ;BST
+
+
+;; TEMPLATE RULES USED:
+;; one of: two cases
+;; - atomic distinct: false
+;; - compound: (make-node Number String BST BST)
+;; self reference: (node-left t) has type BST
+;; self reference: (node-right t) has type BST
+
 
 ```
 
