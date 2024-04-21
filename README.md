@@ -8,7 +8,7 @@ Assignments and notes from [Open Source Society University (OSSU)'s Bachelor in 
 
 Topics covered: `Arithmetics`, `Basic Geometry`, `Pre-algebra`, `Integrated Math 1`, `Integrated Math 2`, `Integrated Math 3`
 
-| Course | Effort | Status | Artifacts |
+| Course | Effort | Status | Artefacts |
 | --- | --- | --- | :-: |
 | [Khan Academy - Arithmetics](https://www.khanacademy.org/math/arithmetic)| 0.5 hours | Completed | NA |
 
@@ -17,7 +17,7 @@ Topics covered: `Arithmetics`, `Basic Geometry`, `Pre-algebra`, `Integrated Math
 
 Topics covered: `simple programs`, `simple data structures`
 
-| Course | Effort | Status | Artifacts |
+| Course | Effort | Status | Artefacts |
 | --- | --- | --- | :-: |
 | [Python for Everybody](https://www.py4e.com/)| 100 hours | Completed | NA |
 
@@ -25,10 +25,10 @@ Topics covered: `simple programs`, `simple data structures`
 
 Topics covered: `functional programming`, `design for testing`, `program requirements`, `common design patterns`, `unit testing`, `object-oriented design`, `static typing`, `dynamic typing`, `ML-family languages (via Standard ML)`, `Lisp-family languages (via Racket)`, `Ruby`
 
-| Course | Effort | Status | External Link |
-| --- | --- | --- | :-: |
-| [How to Code - Simple Data ](./core-programming/course-how-to-code-simple-data-ubc/README.md) | 70 hours | [Completed](https://courses.edx.org/certificates/3cbdbcc7b50447bcabb7723a0493929a) | [URL](https://www.edx.org/course/how-to-code-simple-data) |
-| [How to Code - Complex Data] | --- | In progress | [URL](https://learning.edx.org/course/course-v1:UBCx+HtC2x+2T2017/home) |
+| Course | Effort | Status |  Grade |  Notes and Assignments |
+| --- | --- | --- | --- | :-: |
+| [How to Code - Simple Data ](https://www.edx.org/course/how-to-code-simple-data) | 70 hours | [Completed](https://courses.edx.org/certificates/3cbdbcc7b50447bcabb7723a0493929a) | 98% | [URL](./core-programming/course-how-to-code-simple-data-ubc/README.md) |
+| [How to Code - Complex Data](https://learning.edx.org/course/course-v1:UBCx+HtC2x+2T2017/home) |  | In progress |  |  |
 
 
 
