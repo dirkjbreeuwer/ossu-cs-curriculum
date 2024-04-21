@@ -34,4 +34,4 @@ Solutions to excercises
 | [Reference](./assignments/04b-reference/) | 100% |
 | [Naturals](./assignments/05a-naturals/) | 100% |
 | [Helpers](./assignments/05b-helpers/) | 100% |
-| [Binary search trees] | 10% |
+| [Binary search trees](./assignments/06a-bst/) | 10% |
