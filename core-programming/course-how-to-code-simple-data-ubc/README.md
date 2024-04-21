@@ -15,7 +15,7 @@ Recognize and represent more complicated information
 
 * [How to design programs](./notes/00-systematic-programme-design.md)
 * [How to design functions (HtDF)](./notes/01b-htdf.md)
-* How to design data (HtDD)
+* [How to design data (HtDD)](./notes/01c-htdd.md)
 * How to design worlds (HtDW)
 * Procesing simple data (numbers, booleans, strings)
 * [Processing compound data (structures)](./notes/03b-compound-data.md)
