@@ -20,6 +20,7 @@ Recognize and represent more complicated information
 * Procesing simple data (numbers, booleans, strings)
 * [Processing compound data (structures)](./notes/03b-compound-data.md)
 * [Processing arbitrary large data (lists, binary search trees)](./notes/processing-arbitrarily-large-data.md)
+* [Data structures: Binary search trees](./notes/06-binary-search-trees.md)
 
 ## Excercises
 
