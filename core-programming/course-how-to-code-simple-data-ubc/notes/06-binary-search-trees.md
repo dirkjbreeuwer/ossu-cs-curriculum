@@ -58,6 +58,14 @@ At each level:
      (... (node-value bst)     ; Process the value of the node
           (fn-for-bst (node-left bst))   ; Recurse on the left subtree
           (fn-for-bst (node-right bst)))]))  ; Recurse on the right subtree
+
+;; TEMPLATE RULES USED:
+;; one of: two cases
+;; - atomic distinct: false
+;; - compound: (make-node Number String BST BST)
+;; self reference: (node-left t) has type BST
+;; self reference: (node-right t) has type BST
+
 ```
 
 Template rules used: 
