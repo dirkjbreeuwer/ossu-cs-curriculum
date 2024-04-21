@@ -38,5 +38,11 @@ Topics covered: `functional programming`, `design for testing`, `program require
 | --- | --- | --- | :-: | --- |
 | [Tutorial: How to deploy serverless containers for free](https://www.youtube.com/watch?v=cw34KMPSt4k)| Cloud Computing | 5 minutes | Completed | | 
 | [100 days of code in Python - Replit](https://replit.com/learn/100-days-of-python)| Python Projects |  | Backlog | Recommended by Paul Graham |
+| [MIT 6.102: Software Construction](https://web.mit.edu/6.102/www/sp23/) | Core programming | | Backlog | [MIT Curriculum](https://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/) | 
+| [MIT 6.042J Mathematics For Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/) | Mathematics | | Backlog | [MIT Curriculum](https://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/) | 
+| [MIT 6.1040 Software Design](https://61040-fa23.github.io/) | Mathematics | | Backlog | [MIT EECS Curriculum](https://catalog.mit.edu/degree-charts/eecs-subject-groupings/#advancedundergraduate2text) | 
+
+
+
 
 
