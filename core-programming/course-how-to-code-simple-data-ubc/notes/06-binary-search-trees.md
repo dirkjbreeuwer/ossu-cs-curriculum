@@ -10,8 +10,8 @@ At each level:
 ```Lisp
 (define-struct node (key value left right))
 ;; A BST is one of:
-;; - 'empty' (indicating no BST)
-;; - (make-node Number Integer BST BST)  ; A node with a key, value, left and right child
+;; - false (indicating no BST)
+;; - (make-node Number String BST BST)  ; A node with a key, value, left and right child
 
 ;; Interpretation:
 ;; - 'empty' represents an empty BST
@@ -24,6 +24,12 @@ At each level:
 ;; - The key of each node is greater than all keys in its left child BST
 ;; - The key of each node is less than all keys in its right child BST
 ;; - The same key must not appear more than once in the BST
+
+;; EXAMPLES:
+
+(define BST0 false) ;; no BST
+(define BST1 (make-node 1 "abc" false false))  ;; A BST with one node
+(define BST2 (make-node 5 "def" (make-node 1 "abc" false false) (make-node 8 "xyz" false false))) ;; A BST with three nodes
 
 ```
 
