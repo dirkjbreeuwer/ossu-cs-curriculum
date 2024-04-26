@@ -4,7 +4,7 @@
 
 | Section | Progress |  Assignments |  Notes | 
 | :---: | :---: | :---: | :---: |
-| Mutual reference | 0% | [URL](./assignments/7-mutual-reference/) | [URL](./notes/7-mutual-reference/) |
+| Mutual reference | 25% | [URL](./assignments/7-mutual-reference/) | [URL](./notes/7-mutual-reference/) |
 | Two one-of-types | 0% |  |  |
 | Local | 0% |  |  |
 | Abstraction | 0% |  |  |
