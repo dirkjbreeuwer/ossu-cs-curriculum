@@ -5,7 +5,7 @@
 | Section | Progress |  Assignments |  Notes | 
 | :---: | :---: | :---: | :---: |
 | Mutual reference | 100% | [URL](./assignments/7-mutual-reference/) | [URL](./notes/7-mutual-reference/) |
-| Two one-of-types | 0% |  |  |
+| Two one-of-types | 0% | [URL](./assignments/8a-two-one-of-types/) | [URL](./notes/8a-two-one-of-types/) |
 | Local | 0% |  |  |
 | Abstraction | 0% |  |  |
 | Generative Recursion | 0% |  |  |
