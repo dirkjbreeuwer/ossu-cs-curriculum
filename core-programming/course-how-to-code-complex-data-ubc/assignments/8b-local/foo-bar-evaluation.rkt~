@@ -1,0 +1,25 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname foo-bar-evaluation) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+(define (calculate-result number)
+  (local [(define (add-multiple factor) (+ number factor))]
+    (+ number (add-multiple (* 2 number)))))
+
+(list (calculate-result 2) (calculate-result 3))
+
+(define n_1 2)
+(define n_2 3)
+
+(list
+(local [(define (add-multiple factor) (+ n_1 factor))]
+    (+ n_1 (add-multiple (* 2 n_1))))
+(local [(define (add-multiple factor) (+ n_2 factor))]
+    (+ n_2 (add-multiple (* 2 n_2))))
+ )
+
+
+(list
+
+    (+ n_1 (add-multiple (* 2 n_1)))
+    (+ n_2 (add-multiple (* 2 n_2)))
+ )
