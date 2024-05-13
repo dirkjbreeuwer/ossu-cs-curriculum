@@ -54,3 +54,7 @@ Example
 * outer-function defines inner-function.
 * inner-function has access to the variable x defined in outer-function due to lexical scoping. Even though inner-function is called outside of its defining scope (via add-five), it still remembers x's value as 5.
 * This demonstrates how closures work under lexical scoping, maintaining access to their lexical environment.
+
+### How local works
+
+When we get to evaluate the local expression, three things happen in one step: (1) Renaming the local definition(s) and all its references to a new name (2) Lifting the definitions to the top level scope (3) Replacing the local expression with the body, in which renaming has happened
