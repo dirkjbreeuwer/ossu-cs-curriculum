@@ -55,6 +55,33 @@ Example
 * inner-function has access to the variable x defined in outer-function due to lexical scoping. Even though inner-function is called outside of its defining scope (via add-five), it still remembers x's value as 5.
 * This demonstrates how closures work under lexical scoping, maintaining access to their lexical environment.
 
-### How local works
+### How local gets evaluated
 
 When we get to evaluate the local expression, three things happen in one step: (1) Renaming the local definition(s) and all its references to a new name (2) Lifting the definitions to the top level scope (3) Replacing the local expression with the body, in which renaming has happened
+
+# Encapsulation
+
+Encapsulation in functional programming languages involves defining a set of functions within a given scope (such as a module or a local environment) that operate on specific data but do not expose the data directly. Data can be encapsulated within functions to hide its details from the outside world and to ensure that data manipulation is controlled and deliberate.
+
+## Motivation for encapsulation
+
+1. Maintainability: Encapsulating operations on data within specific functions or modules helps in maintaining and modifying code with fewer side effects, as the data is not openly modifiable throughout the program.
+2. Safety: By restricting direct access to data and exposing only necessary functions to manipulate it, programs become safer and more reliable. This prevents misuse of data and accidental modifications that can lead to bugs.
+3. Abstraction: Encapsulation allows programmers to think at a higher level of abstraction. Instead of worrying about the specific details of data manipulation, a programmer can focus on what operations are available and how they can be composed to achieve desired outcomes.
+4. Namespace Management: By encapsulating functionality within specific modules or files, you can manage namespaces more effectively, avoiding conflicts and improving code organization.
+
+## Example 
+
+```Lisp
+(define (create-counter)
+  (let ([count 0])
+    (lambda ()
+      (set! count (add1 count))
+      count)))
+
+(define my-counter (create-counter))
+
+(my-counter) ; => 1
+(my-counter) ; => 2
+```
+
