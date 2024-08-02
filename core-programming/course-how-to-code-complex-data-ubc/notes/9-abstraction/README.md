@@ -67,3 +67,133 @@ All we had to do is replace the two sets of dots with parameters.
 * Next we replace the function that takes the first of the list and combines it with the results of the natural recursion with fn. 
 * Finally we also rename the recursion and replace the parameters in the natural recurssion.
 
+
+## Process for designing an abstract fold function
+
+Step 1: Begin with the function templates 
+
+```Lisp
+;; =================
+;; Data definitions:
+
+(define-struct dir (name sub-dirs images))
+;; Dir is (make-dir String ListOfDir ListOfImage)
+;; interp. An directory in the organizer, with a name, a list
+;;         of sub-dirs and a list of images.
+
+(define (fn-for-dir d)
+  (...
+   (dir-name d) ; String
+   (fn-for-lod (dir-sub-dirs d)) ; ListOfDir
+   (fn-for-loi (dir-images d))) ;ListOfImage
+  )
+
+;; ListOfDir is one of:
+;;  - empty
+;;  - (cons Dir ListOfDir)
+;; interp. A list of directories, this represents the sub-directories of
+;;         a directory.
+
+(define (fn-for-lod lod)
+  (cond
+    [(empty? lod) ...]
+    [else
+     (...(fn-for-dir (first lod)) ; Dir
+         (fn-for-lod (rest lod)))  ; ListOfDir
+     ]))
+
+;; ListOfImage is one of:
+;;  - empty
+;;  - (cons Image ListOfImage)
+;; interp. a list of images, this represents the sub-images of a directory.
+;; NOTE: Image is a primitive type, but ListOfImage is not.
+
+
+(define (fn-for-loi loi)
+  (cond
+    [(empty? loi) ...]
+    [else
+     (... (first loi) ; Image
+         (fn-for-loi (rest loi)))  ; ListOfImage
+     ]))
+```
+
+Step 2: Combine them into one abstract function using local:
+
+```
+(define (fold-dir ... ... ... ... ... d)
+  (local [
+          (define (fn-for-dir d) ; Dir -> X
+            (...
+             (dir-name d) ; String
+             (fn-for-lod (dir-sub-dirs d)) ; ListOfDir
+             (fn-for-loi (dir-images d))) ;ListOfImage
+            )
+          (define (fn-for-lod lod) ; (list of dir) -> Y
+            (cond
+              [(empty? lod) ...]
+              [else
+               (... (fn-for-dir (first lod)) ; Dir
+                  (fn-for-lod (rest lod)))  ; ListOfDir
+               ]))
+          
+          (define (fn-for-loi loi) ; (list of image) -> Z
+            (cond
+              [(empty? loi) ...]
+              [else
+               (... (first loi) ; Image
+                   (fn-for-loi (rest loi)))  ; ListOfImage
+               ]))
+          ]
+    (fn-for-dir d)))
+```
+
+Step 3: Replace the combinatins and the base case templates
+
+```
+(define (fold-dir c1 c2 c3 b1 b2 d)
+  (local [
+          (define (fn-for-dir d) ; Dir -> X
+            (c1
+             (dir-name d) ; String
+             (fn-for-lod (dir-sub-dirs d)) ; ListOfDir
+             (fn-for-loi (dir-images d))) ;ListOfImage
+            )
+          (define (fn-for-lod lod) ; (list of dir) -> Y
+            (cond
+              [(empty? lod) b1]
+              [else
+               (c2 (fn-for-dir (first lod)) ; Dir
+                  (fn-for-lod (rest lod)))  ; ListOfDir
+               ]))
+          
+          (define (fn-for-loi loi) ; (list of image) -> Z
+            (cond
+              [(empty? loi) b2]
+              [else
+               (c3 (first loi) ; Image
+                   (fn-for-loi (rest loi)))  ; ListOfImage
+               ]))
+          ]
+    (fn-for-dir d)))
+
+```
+
+Step 4: Design the signature
+
+```
+;; (String Y Z -> X) (X Y -> Y) (Image Z -> Z) Y Z Dir -> X 
+;; Process fold-dir
+
+```
+
+Step 5: Test the abstract fold function
+
+```
+(check-expect (local
+                [
+                 (define (c1 s rlod rloi) (+ rlod rloi))
+                 (define (c2 rlod rdir) (+ rlod rdir))
+                 (define (c3 i rloi) (+ 1 rloi))]
+                (fold-dir c1 c2 c3 0 0 D6)) 3)
+```
