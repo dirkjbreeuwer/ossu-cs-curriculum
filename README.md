@@ -31,12 +31,20 @@ Topics covered: `functional programming`, `design for testing`, `program require
 | [UBC How to Code - Complex Data](https://learning.edx.org/course/course-v1:UBCx+HtC2x+2T2017/home) |  | In progress |  | [URL](./core-programming/course-how-to-code-complex-data-ubc) |
 
 
+### Final project
+
+
+| Course | Effort | Status |  Grade |  Notes and Assignments |
+| --- | --- | --- | --- | :-: |
+| [University of Helsinky - FullStack Open](https://fullstackopen.com/en/) | 180 hours | In Progress | | [URL](./final-project/fullstack-open) 
+
+
 
 ### Other
 
 | Course | Topic | Effort | Status | Notes |
 | --- | --- | --- | :-: | --- |
-| [Tutorial: How to deploy serverless containers for free](https://www.youtube.com/watch?v=cw34KMPSt4k)| Cloud Computing | 5 minutes | Completed | | 
+| [Tutorial: How to deploy serverless containers for free](https://www.youtube.com/watch?v=cw34KMPSt4k)| Cloud Computing | 10 minutes | Completed | | 
 | [100 days of code in Python - Replit](https://replit.com/learn/100-days-of-python)| Python Projects |  | Backlog | Recommended by Paul Graham |
 | [MIT 6.102: Software Construction](https://web.mit.edu/6.102/www/sp23/) | Core programming | | Backlog | [MIT Curriculum](https://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/) | 
 | [MIT 6.042J Mathematics For Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/) | Mathematics | | Backlog | [MIT Curriculum](https://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/) | 
