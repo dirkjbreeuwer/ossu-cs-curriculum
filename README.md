@@ -49,7 +49,7 @@ Topics covered: `functional programming`, `design for testing`, `program require
 | [MIT 6.102: Software Construction](https://web.mit.edu/6.102/www/sp23/) | Core programming | | Backlog | [MIT Curriculum](https://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/) | 
 | [MIT 6.042J Mathematics For Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/) | Mathematics | | Backlog | [MIT Curriculum](https://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/) | 
 | [MIT 6.1040 Software Design](https://61040-fa23.github.io/) | Advanced Programming | | Backlog | [MIT EECS Curriculum](https://catalog.mit.edu/degree-charts/eecs-subject-groupings/#advancedundergraduate2text) | 
-
+| [Learn CSS](https://web.dev/learn/css/) | CSS | | Backlog | |
 
 
 
